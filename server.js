@@ -11,13 +11,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.get('/tmb/bot/image/:name', function(request, response){
+app.get('/KoreBanking/bot/image/:name', function(request, response){
     var filename = request.params.name;
     console.log(filename);
     response.sendFile(__dirname+"/images/"+filename);
 });
 
-app.post('/tmb/bot/accountBalance', function (request, response) {
+app.post('/KoreBanking/bot/accountBalance', function (request, response) {
     var filter = {};
     filter.accountNumber = request.body.accountNumber;
     return AccountTable.getAccountInfoForInterest(filter)
@@ -31,7 +31,7 @@ app.post('/tmb/bot/accountBalance', function (request, response) {
 });
 
 //get account Info
-app.post('/tmb/bot/getAccountDetails', function (request, response) {
+app.post('/KoreBanking/bot/getAccountDetails', function (request, response) {
     var filter = {};
     filter.userId = request.body.userId;
     return AccountTable.getAccountDetails(filter)
@@ -56,7 +56,7 @@ app.post('/tmb/bot/getAccountDetails', function (request, response) {
 });
 
 //update Account balance and intrest
-app.post('/tmb/bot/updatedBalanceAndInterest', function (request, response) {
+app.post('/KoreBanking/bot/updatedBalanceAndInterest', function (request, response) {
     var filter = {};
     filter.accountNumber = request.body.accountNumber;
     filter.availableBalance =  request.body.availableBalance;
@@ -72,7 +72,7 @@ app.post('/tmb/bot/updatedBalanceAndInterest', function (request, response) {
 });
 
 //Get Transaction details
-app.post('/tmb/bot/transactionDetails', function (request, response) {
+app.post('/KoreBanking/bot/transactionDetails', function (request, response) {
     var filter = {};
     filter.accountNumber = request.body.accountNumber;
     console.log("request----",filter);
@@ -87,7 +87,7 @@ app.post('/tmb/bot/transactionDetails', function (request, response) {
 });
 
 //Account validation
-app.post('/tmb/bot/validateAccount', function (request, response) {
+app.post('/KoreBanking/bot/validateAccount', function (request, response) {
     var filter = {};
     filter.mobileNumber = request.body.mobileNumber;
     filter.otp = request.body.otp;
@@ -102,7 +102,7 @@ app.post('/tmb/bot/validateAccount', function (request, response) {
 });
 
 //Fund transfer
-app.post('/tmb/bot/fundsTransfer', function (request, response) {
+app.post('/KoreBanking/bot/fundsTransfer', function (request, response) {
     var toAccountDetails = [];
     var filter = {};
     filter.toAccount = request.body.toAccount;
@@ -216,7 +216,7 @@ app.post('/tmb/bot/fundsTransfer', function (request, response) {
 });
 
 
-var port = 3050;
+var port = 3055;
 app.listen(port, function () {
     console.log('Example app listening on port !', port)
 });
